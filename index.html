@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>border</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .global-header {
+            text-align: center;
+            width: 100%;
+            position: relative;
+            top: 0;
+            z-index: 999;
+            background-color: #fff;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+
+        .nav-menu {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 22px;
+            margin-left: 50px;
+        }
+
+        ul {
+            font-size: 13px;
+            line-height: 21px;
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 28px;
+            padding-bottom: 22px;
+            position: relative;
+        }
+
+        li>a {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            color: #252222;
+            font-weight: bold;
+        }
+        .highlight {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+            height: 2px;
+            transition: all 0.3s;
+            background-color:chocolate;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="global-header">
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#">صفحه اصلی</a></li>
+                <li><a href="#">دوره ها</a></li>
+                <li><a href="#">بلاگ</a></li>
+                <li><a href="#">تالار کفتمان</a></li>
+                <li><a href="#">کانال تلگرام</a></li>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        const menuItems = document.querySelectorAll('.nav-menu li');
+        const span = document.createElement('span');
+        span.classList.add('highlight');
+        document.body.appendChild(span);
+        menuItems.forEach((item)=>{
+            item.addEventListener('mouseenter', highlight)
+        })
+        function highlight() {
+            const itemCoordinates = this.getBoundingClientRect();
+            const {left,width,bottom} = itemCoordinates;
+            span.style.width = `${width}px`;
+            span.style.transform = `translate(${left}px,${bottom}px)`
+        }
+    </script>
+</body>
+
+</html>
